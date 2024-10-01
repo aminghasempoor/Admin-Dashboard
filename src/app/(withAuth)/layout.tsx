@@ -1,19 +1,28 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-import NavBar from "@/layouts/dashboard/Navbar";
-import SideBar from "@/layouts/dashboard/SideBar";
+import SideBarMenu from "@/components/SideBarMenu";
+import Navbar from "@/components/NavBar";
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+function WithAuthlayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <NavBar />
-      <div className="flex">
-        <div className="hidden md:block h-[100vh] w-[300px]">
-          <SideBar />
-        </div>
-        <div className="p-5 w-full md:max-w-[1140px]">{children}</div>
+    <div className="flex h-screen px-4 pt-2">
+      <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%]">
+        <Link
+          href={"/"}
+          className="flex items-center justify-center lg:justify-start gap-2"
+        >
+          <Image src={"/logo.png"} width={50} height={50} alt="logo" />
+          <span className="hidden lg:block text-[#4ed9f1]">Dashboard</span>
+        </Link>
+        <SideBarMenu />
+      </div>
+      <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] overflow-y-scroll">
+        <Navbar />
+        {children}
       </div>
     </div>
   );
-};
+}
 
-export default MainLayout;
+export default WithAuthlayout;

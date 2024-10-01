@@ -1,8 +1,6 @@
 import {
   Command,
-  CommandEmpty,
   CommandGroup,
-  CommandInput,
   CommandItem,
   CommandList,
   CommandSeparator,
@@ -21,9 +19,7 @@ import Link from "next/link";
 const Sidebar = () => {
   return (
     <Command className="rounded-none">
-      <CommandInput placeholder="Type a command or search..." />
       <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Suggestions">
           <CommandItem>
             <LayoutDashboard className="mr-2 h-4 w-4" />
