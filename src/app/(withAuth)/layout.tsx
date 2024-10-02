@@ -6,8 +6,8 @@ import Navbar from "@/components/NavBar";
 
 function WithAuthlayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen px-4 pt-2">
-      <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%]">
+    <div className="flex h-screen px-4 py-4">
+      <div className="w-[14%] md:w-[8%] lg:w-[16%] xl:w-[14%] border-r">
         <Link
           href={"/"}
           className="flex items-center justify-center lg:justify-start gap-2"
