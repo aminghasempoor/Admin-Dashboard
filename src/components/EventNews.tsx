@@ -15,7 +15,7 @@ const EventNews = () => {
                 <Card className="p-5 rounded-md border-2 "
                       key={event.id}>
                     <CardHeader>
-                        <CardTitle className="font-bold text-xl">Events</CardTitle>
+                        <CardTitle className="font-bold text-xl">{event.title}</CardTitle>
                         <CardDescription className="text-xs">{event.title}</CardDescription>
                     </CardHeader>
                     <CardContent>
