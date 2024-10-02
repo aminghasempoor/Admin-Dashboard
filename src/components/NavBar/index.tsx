@@ -17,7 +17,9 @@ const Navbar = () => {
                 />
             </div>
             <div className="flex items-center gap-5 justify-end w-full">
-                <ModeToggle/>
+                <div className={"rounded-full w-7 h-7 flex items-center justify-center cursor-pointer"}>
+                    <ModeToggle/>
+                </div>
                 <div className="rounded-full w-7 h-7 flex items-center justify-center cursor-pointer relative">
                     <NavBarMassages/>
                 </div>

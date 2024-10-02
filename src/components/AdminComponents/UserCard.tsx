@@ -16,7 +16,7 @@ const UserCard = ({type}: { type: string }) => {
                 <CardDescription>1,234</CardDescription>
             </CardHeader>
             <CardContent>
-                <p className={"text-green-600"}>2024/25</p>
+                <p className={"text-[#2eb88a]"}>2024/25</p>
                 <Image src="/more.png" alt="" width={20} height={20} />
             </CardContent>
         </Card>

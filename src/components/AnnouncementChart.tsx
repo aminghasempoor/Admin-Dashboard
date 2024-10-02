@@ -1,6 +1,6 @@
 "use client"
 import * as React from "react"
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
+import { CartesianGrid, Line, LineChart,  } from "recharts"
 import {
     Card,
     CardContent,
@@ -15,7 +15,6 @@ import {
     ChartTooltipContent,
 } from "@/components/ui/chart"
 import {AnnouncementChartData} from "@/lib/ChartData";
-export const description = "An interactive line chart"
 
 const chartConfig = {
     views: {
@@ -84,20 +83,6 @@ export function AnnouncementChart() {
                         }}
                     >
                         <CartesianGrid vertical={false} />
-                        <XAxis
-                            dataKey="date"
-                            tickLine={false}
-                            axisLine={false}
-                            tickMargin={8}
-                            minTickGap={32}
-                            tickFormatter={(value) => {
-                                const date = new Date(value)
-                                return date.toLocaleDateString("en-US", {
-                                    month: "short",
-                                    day: "numeric",
-                                })
-                            }}
-                        />
                         <ChartTooltip
                             content={
                                 <ChartTooltipContent

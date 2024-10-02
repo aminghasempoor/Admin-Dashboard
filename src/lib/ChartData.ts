@@ -1,8 +1,9 @@
 export const CountChartData = [
-    { total: "Total", desktop: 186, mobile: 80, count : 2000 },
-    { manager: "Manager", desktop: 305, mobile: 200, count : 600 },
-    { operator: "Operator", desktop: 237, mobile: 120, count : 400 },
-    { customer: "Customer", desktop: 73, mobile: 190, count : 1000 },
+    { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
+    { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
+    { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
+    { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
+    { browser: "other", visitors: 90, fill: "var(--color-other)" },
 ]
 
 export const AnnouncementChartData = [
@@ -97,4 +98,9 @@ export const AnnouncementChartData = [
     { date: "2024-06-28", desktop: 149, mobile: 200 },
     { date: "2024-06-29", desktop: 103, mobile: 160 },
     { date: "2024-06-30", desktop: 446, mobile: 400 },
+]
+
+export const VisitorChartData = [
+    { browser: "chrome", visitors: 187, fill: "var(--color-chrome)" },
+    { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
 ]
