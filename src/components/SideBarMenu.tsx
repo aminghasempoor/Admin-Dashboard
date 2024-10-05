@@ -1,8 +1,13 @@
+"use client"
 import {menuItems} from "@/lib/MenuItems";
 import Image from "next/image";
 import Link from "next/link";
+import useUser from "@/lib/app/hooks/useUser";
+// import {redirect} from "next/navigation";
 
 const SideBarMenu = () => {
+  const {isAuth} = useUser()
+  // if (!isAuth) redirect("/")
   return (
     <div className="mt-4 text-sm">
       {menuItems.map((menuItem) => (
@@ -11,7 +16,7 @@ const SideBarMenu = () => {
             {menuItem.title}
           </span>
           {menuItem.items.map((subMenuItem) => {
-            if (subMenuItem.permission.includes("admin")) {
+            if (subMenuItem.permission.includes(isAuth)) {
               return (
                 <Link
                   href={subMenuItem.href}
