@@ -17,7 +17,7 @@ function WithAuthlayout({ children }: { children: React.ReactNode }) {
         </Link>
         <SideBarMenu />
       </div>
-      <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] overflow-y-scroll">
+      <div className="w-[86%] md:w-[92%] lg:w-[84%] xl:w-[86%] scrollbar-hide">
         <Navbar />
         {children}
       </div>

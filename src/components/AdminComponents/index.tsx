@@ -7,9 +7,7 @@ import EventCalendar from "@/components/EventCalendar";
 const AdminComponent = () => {
     return (
         <div className="p-4 flex gap-2 flex-col md:flex-row">
-            {/* LEFT */}
             <div className="w-full lg:w-3/4 flex flex-col gap-8">
-                {/* USER CARDS */}
                 <div className="flex gap-3 w-full justify-between flex-wrap lg:flex-nowrap">
                     <UserCard type="student" />
                     <UserCard type="teacher" />
@@ -30,7 +28,6 @@ const AdminComponent = () => {
             </div>
             <div className="w-full lg:w-1/4 flex flex-col gap-8">
                 <EventCalendar />
-                {/*<Announcements/>*/}
             </div>
         </div>
     );
