@@ -1,4 +1,4 @@
-import { menuItems } from "@/lib/MenuItems";
+import {menuItems} from "@/lib/MenuItems";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,14 +11,14 @@ const SideBarMenu = () => {
             {menuItem.title}
           </span>
           {menuItem.items.map((subMenuItem) => {
-            if (subMenuItem.visible.includes("customer")) {
+            if (subMenuItem.permission.includes("admin")) {
               return (
                 <Link
                   href={subMenuItem.href}
                   key={subMenuItem.label}
-                  className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md hover:bg-lamaSkyLight"
+                  className="flex items-center justify-center lg:justify-start gap-4 text-gray-500 py-2 md:px-2 rounded-md"
                 >
-                  <Image src={subMenuItem.icon} alt="" width={20} height={20} />
+                  <Image src={subMenuItem.icon} alt="" width={30} height={30} />
                   <span className="hidden lg:block">{subMenuItem.label}</span>
                 </Link>
               );
