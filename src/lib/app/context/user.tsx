@@ -12,6 +12,7 @@ const reducer = (state, action) => {
         case "CHANGE_USER":
             return {...state, user: action.user};
         case "CHANGE_AUTH_STATE":
+            localStorage.setItem("_auth_state", action.isAuth);
             return {...state, isAuth: action.isAuth};
         case "CLEAR_TOKEN":
             localStorage.removeItem("_token");
@@ -70,20 +71,22 @@ export const UserProvider = ({children}) => {
 
     useEffect(() => {
         const localToken = localStorage.getItem("_token");
+        const localAuthState = localStorage.getItem("_auth_state");
         if (localToken) dispatch({type: "SET_TOKEN", token: localToken});
+        if (localAuthState) dispatch({type: "CHANGE_AUTH_STATE", isAuth: "customer"});
     }, []);
 
-    useEffect(() => {
-        if (!state.token) {
-            clearUser();
-            changeAuthState(false);
-            return;
-        }
+    // useEffect(() => {
+        // if (!state.token) {
+        //     clearUser();
+        //     changeAuthState(false);
+        //     return;
+        // }
         // getUser((data) => {
         //     changeUser(data);
         //     changeAuthState(true);
         // });
-    }, [state.token]);
+    // }, [state.token]);
 
     return (
         <UserContext.Provider
