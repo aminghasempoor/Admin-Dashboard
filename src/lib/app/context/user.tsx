@@ -71,9 +71,7 @@ export const UserProvider = ({children}) => {
 
     useEffect(() => {
         const localToken = localStorage.getItem("_token");
-        const localAuthState = localStorage.getItem("_auth_state");
         if (localToken) dispatch({type: "SET_TOKEN", token: localToken});
-        if (localAuthState) dispatch({type: "CHANGE_AUTH_STATE", isAuth: "customer"});
     }, []);
 
     // useEffect(() => {
