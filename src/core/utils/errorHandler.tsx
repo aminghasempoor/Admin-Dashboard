@@ -42,7 +42,7 @@ const errorClient = (pushToastList, response, clearToken, notification) => {
             if (notification) Notifications(pushToastList, "error", response.status, "");
             break
         default:
-            if (notification) Notifications(pushToastList, "error", response.status, "");
+            if (notification) Notifications(pushToastList, "error", response.status, "Request failed with status code :");
             break
     }
 }

@@ -38,7 +38,7 @@ const useRequest = (initOptions) => {
                 headers: {..._options.requestOptions.headers, authorization: `Bearer ${token}`}
             }
         }
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             if (_options.notification && _options.failed.notification.show && _options.pending) {
                 dismissToastList(["pending", "warning", "error", "success"]);
                 Notifications(pushToastList, "pending", "", "");
@@ -54,12 +54,14 @@ const useRequest = (initOptions) => {
                 .catch(error => {
                     if (error.response) {
                         errorResponse(pushToastList, dismissToastList, error.response, clearToken, _options.notification && _options.failed.notification.show)
+                        return
                     } else if (error.request) {
                         errorRequest(dismissToastList, _options.notification && _options.failed.notification.show)
+                        return
                     } else {
                         errorSetting(dismissToastList, _options.notification && _options.failed.notification.show)
+                        return
                     }
-                    reject(error)
                 })
         });
     }

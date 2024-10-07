@@ -1,11 +1,23 @@
+"use client"
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Label} from "@/components/ui/label";
 import {Input} from "@/components/ui/input";
 import {Button} from "@/components/ui/button";
 import React from "react";
 import SvgRegister from "@/core/svgs/SvgRegister";
+import useRequest from "@/lib/app/hooks/useRequest";
 
 const SignInComponent = () => {
+    const requestServer = useRequest({notification: {success : true, show : true}})
+
+    function HandleClick() {
+        requestServer("/api/fake-sign-in", "post", {
+            data : {
+                email: "amin@gmail.com",
+                password: "123456",
+            }
+        })
+    }
     return (
         <Card className="w-full max-w-md shadow-lg rounded-lg p-5">
             <CardHeader className={"flex items-center justify-center gap-y-2"}>
@@ -29,6 +41,7 @@ const SignInComponent = () => {
             </CardContent>
             <CardFooter className="flex justify-center mt-6">
                 <Button
+                    onClick={HandleClick}
                     className="w-full py-2 hover:bg-primary text-white font-semibold rounded-md transition-transform transform hover:scale-105 focus:ring focus:outline-none">
                     Sign In
                 </Button>
