@@ -6,6 +6,7 @@ import {UserProvider} from "@/lib/app/context/user";
 import AppLayout from "@/layouts/AppLayout";
 import React from "react";
 import {LoadingProvider} from "@/lib/app/context/loading";
+import {ToastProvider} from "@/lib/app/context/toast";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -25,22 +26,24 @@ export const metadata: Metadata = {
 
 export default function RootLayout({children}: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en">
+        <html className={"h-full"} lang="en">
         <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+            className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
         >
         <UserProvider>
             <LoadingProvider>
-                {/*<AppLayout>*/}
-                    <ThemeProvider
-                        attribute="class"
-                        defaultTheme="system"
-                        enableSystem
-                        disableTransitionOnChange
-                    >
-                        {children}
-                    </ThemeProvider>
-                {/*</AppLayout>*/}
+                <ToastProvider>
+                    <AppLayout>
+                        <ThemeProvider
+                            attribute="class"
+                            defaultTheme="system"
+                            enableSystem
+                            disableTransitionOnChange
+                        >
+                            {children}
+                        </ThemeProvider>
+                    </AppLayout>
+                </ToastProvider>
             </LoadingProvider>
         </UserProvider>
         </body>
