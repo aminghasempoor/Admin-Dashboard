@@ -1,5 +1,7 @@
 "use client"
 import {createContext, useCallback, useEffect, useReducer} from "react";
+import axios from "axios";
+import {GET_USER_ROUTE} from "@/core/utils/routes";
 const initialUser = {
     isAuth: false,
     token: null,
@@ -52,39 +54,37 @@ export const UserProvider = ({children}) => {
         dispatch({type: "SET_TOKEN", token});
     }, []);
 
-    // const getUser = useCallback(
-    //     (callback = () => {
-    //     }) => {
-    //         axios
-    //             .get(GET_USER_ROUTE, {
-    //                 headers: {authorization: `Bearer ${state.token}`},
-    //             })
-    //             .then(({data}) => {
-    //                 if (typeof callback === "function") callback(data);
-    //             })
-    //             .catch(error => {
-    //                 if (error.response.status === 401) clearToken()
-    //             })
-    //     },
-    //     [state.token]
-    // );
+    const getUser = useCallback(
+        (callback = () => {
+        }) => {
+            axios
+                .get(GET_USER_ROUTE)
+                .then(({data}) => {
+                    if (typeof callback === "function") callback(data);
+                })
+                .catch(error => {
+                    if (error.response.status === 401) clearToken()
+                })
+        },
+        [state.token]
+    );
 
     useEffect(() => {
         const localToken = localStorage.getItem("_token");
         if (localToken) dispatch({type: "SET_TOKEN", token: localToken});
     }, []);
 
-    // useEffect(() => {
-        // if (!state.token) {
-        //     clearUser();
-        //     changeAuthState(false);
-        //     return;
-        // }
-        // getUser((data) => {
-        //     changeUser(data);
-        //     changeAuthState(true);
-        // });
-    // }, [state.token]);
+    useEffect(() => {
+        if (!state.token) {
+            clearUser();
+            changeAuthState(false);
+            return;
+        }
+        getUser((data) => {
+            changeUser(data);
+            changeAuthState(true);
+        });
+    }, [state.token]);
 
     return (
         <UserContext.Provider
@@ -92,7 +92,7 @@ export const UserProvider = ({children}) => {
                 isAuth: state.isAuth,
                 token: state.token,
                 user: state.user,
-                // getUser,
+                getUser,
                 clearUser,
                 changeUser,
                 changeAuthState,

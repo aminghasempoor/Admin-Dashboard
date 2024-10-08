@@ -14,31 +14,40 @@ import {
 } from "@/components/ui/form";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
-import {signUpSchema} from "@/lib/formSchema";
+import {signInSchema} from "@/lib/formSchema";
 import {zodResolver} from "@hookform/resolvers/zod";
 import StyledForm from "@/core/components/StyledForm";
 import Link from "next/link";
+import {GET_USER_TOKEN} from "@/core/utils/routes";
+import useUser from "@/lib/app/hooks/useUser";
 
 const SignInComponent = () => {
+    const {setToken} = useUser();
     const requestServer = useRequest({notification: {success : true, show : true}})
     const defaultValues = {
         email: "",
         password: "",
     };
-    const form = useForm<z.infer<typeof signUpSchema>>({
+    const form = useForm<z.infer<typeof signInSchema>>({
         defaultValues,
-        resolver: zodResolver(signUpSchema),
+        resolver: zodResolver(signInSchema),
         mode: "onBlur",
     });
 
-    async function HandleSubmitClick(values: z.infer<typeof signUpSchema>) {
+    async function HandleSubmitClick(values: z.infer<typeof signInSchema>) {
         console.log(values);
-        // requestServer("/api/fake-sign-in", "post", {
-        //     data : {
-        //         email: "amin@gmail.com",
-        //         password: "123456",
-        //     }
-        // })
+        requestServer(GET_USER_TOKEN, "post",{
+            data: {
+                email: values.email,
+                password: values.password,
+            },
+            success: {
+                notification: {show: false}
+            }
+        }).then((response)=>{
+            setToken(response.data.token)
+            console.log(response)
+        }).catch()
     }
     return (
         <Form {...form} >
@@ -98,7 +107,7 @@ const SignInComponent = () => {
                             className="w-full py-2 hover:bg-primary text-white font-semibold rounded-md transition-transform transform hover:scale-105 focus:ring focus:outline-none"
                             disabled={form.formState.isSubmitting}
                         >
-                            {form.formState.isSubmitting ? "Submitting..." : "Sign Up"}
+                            {form.formState.isSubmitting ? "Submitting..." : "Sign In"}
                         </Button>
                     </CardFooter>
                 </Card>

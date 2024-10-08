@@ -26,7 +26,10 @@ export async function POST(req: Request) {
         }
 
         // Simulate successful response (you can add additional logic as needed)
-        return NextResponse.json({ message: 'Registration successful' }, { status: 200 });
+        return NextResponse.json({
+            message: 'Registration successful',
+            token: "93|8cq5b0th9mLE5s5PRplIGTXdOyDiLPVSMd2JV7uX"
+        }, { status: 200 });
 
     } catch (error) {
         // Catch and handle any unexpected errors

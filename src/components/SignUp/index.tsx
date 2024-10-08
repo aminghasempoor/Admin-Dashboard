@@ -18,8 +18,11 @@ import {signUpSchema} from "@/lib/formSchema";
 import {z} from "zod";
 import StyledForm from "@/core/components/StyledForm";
 import Link from "next/link";
+import {GET_REGISTER_ROUTE} from "@/core/utils/routes";
+import useUser from "@/lib/app/hooks/useUser";
 
 const SignUpComponent = () => {
+    const {setToken} = useUser();
     const requestServer = useRequest({notification: {success: true, show: true}});
 
     const defaultValues = {
@@ -36,13 +39,19 @@ const SignUpComponent = () => {
 
     async function HandleSubmitClick(values: z.infer<typeof signUpSchema>) {
         console.log(values);
-        // requestServer("/api/fake-sign-up", "post", {
-        //     data : {
-        //         email: "amin@gmail.com",
-        //         password: "123456",
-        //         confirmPassword: "123456",
-        //     }
-        // })
+        requestServer(GET_REGISTER_ROUTE, "post", {
+            data: {
+                email: values.email,
+                password: values.password,
+                confirmPassword : values.confirmPassword
+            },
+            success: {
+                notification: {show: false}
+            }
+        }).then((response)=>{
+            setToken(response.data.token)
+            console.log(response)
+        }).catch()
     }
 
     return (

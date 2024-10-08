@@ -6,8 +6,8 @@ import useUser from "@/lib/app/hooks/useUser";
 // import {redirect} from "next/navigation";
 
 const SideBarMenu = () => {
-  const {isAuth} = useUser()
-  // if (!isAuth) redirect("/")
+  const {user} = useUser()
+  console.log(user)
   return (
     <div className="mt-4 text-sm">
       {menuItems.map((menuItem) => (
@@ -16,7 +16,7 @@ const SideBarMenu = () => {
             {menuItem.title}
           </span>
           {menuItem.items.map((subMenuItem) => {
-            if (subMenuItem.permission.includes(isAuth)) {
+            if (subMenuItem.permission.includes(user.role)) {
               return (
                 <Link
                   href={subMenuItem.href}
