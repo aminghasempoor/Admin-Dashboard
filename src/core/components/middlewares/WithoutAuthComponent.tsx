@@ -2,8 +2,6 @@ import FullPageLayout from "@/layouts/FullPageLayout";
 import CenterLayout from "@/layouts/CenterLayout";
 import SvgLoading from "@/core/svgs/SvgLoading";
 import {Card, CardHeader} from "@/components/ui/card";
-import {Button} from "@/components/ui/button";
-import NextLink from "next/link";
 import Image from "next/image";
 import React from "react";
 
@@ -33,7 +31,7 @@ const WithoutAuthComponent = () => {
                                         redirecting to :
                                     </h3>
                                     <h3>
-                                        dashboard page
+                                        dashboard page please wait
                                     </h3>
                                 </div>
                             </CardHeader>

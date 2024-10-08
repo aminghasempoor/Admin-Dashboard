@@ -1,14 +1,7 @@
 "use client"
-import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
+import {Card, CardDescription, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
-import {
-    Form,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form";
-import {Input} from "@/components/ui/input";
+import {Form} from "@/components/ui/form";
 import React from "react";
 import SvgLogin from "@/core/svgs/SvgLogin";
 import useRequest from "@/lib/app/hooks/useRequest";
@@ -20,6 +13,7 @@ import StyledForm from "@/core/components/StyledForm";
 import Link from "next/link";
 import {GET_REGISTER_ROUTE} from "@/core/utils/routes";
 import useUser from "@/lib/app/hooks/useUser";
+import SignUpContent from "@/components/SignUp/SignUpContent";
 
 const SignUpComponent = () => {
     const {setToken} = useUser();
@@ -65,59 +59,7 @@ const SignUpComponent = () => {
                             Sign up to get full access to the dashboard
                         </CardDescription>
                     </CardHeader>
-                    <CardContent className="space-y-4 mt-4">
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Email</FormLabel>
-                                    <Input
-                                        placeholder="Enter your email"
-                                        {...field}
-                                        className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
-                                    />
-                                    {form.formState.errors.email &&
-                                        <FormMessage>{form.formState.errors.email.message}</FormMessage>}
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="password"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Password</FormLabel>
-                                    <Input
-                                        type="password"
-                                        placeholder="Create a password"
-                                        {...field}
-                                        className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
-                                    />
-                                    {form.formState.errors.password &&
-                                        <FormMessage>{form.formState.errors.password.message}</FormMessage>}
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="confirmPassword"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormLabel>Confirm Password</FormLabel>
-                                    <Input
-                                        type="password"
-                                        placeholder="Confirm your password"
-                                        {...field}
-                                        className="border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
-                                    />
-                                    {form.formState.errors.confirmPassword && (
-                                        <FormMessage>{form.formState.errors.confirmPassword.message}</FormMessage>
-                                    )}
-                                </FormItem>
-                            )}
-                        />
-                    </CardContent>
+                    <SignUpContent form={form} />
                     <CardFooter className="flex flex-col justify-center mt-3 gap-y-3">
                         <p className="text-sm text-gray-600">
                             Already have an account ?{" "}

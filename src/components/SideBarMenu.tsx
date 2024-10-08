@@ -7,7 +7,6 @@ import useUser from "@/lib/app/hooks/useUser";
 
 const SideBarMenu = () => {
   const {user} = useUser()
-  console.log(user)
   return (
     <div className="mt-4 text-sm">
       {menuItems.map((menuItem) => (

@@ -1,15 +1,14 @@
 import SignUp from "@/components/SignUp";
-import Loading from "@/app/(Authenticate)/signin/loading";
+import WithoutAuthMiddleware from "@/middlewares/WithoutAuth";
 import {Suspense} from "react";
-import WithoutAuthMiddleware from "./loading";
+import Loading from "./loading";
 
 export default function SignUpPage() {
     return (
         <Suspense fallback={<Loading/>}>
             <WithoutAuthMiddleware>
-                <SignUp />
+                <SignUp/>
             </WithoutAuthMiddleware>
         </Suspense>
-
     );
 }

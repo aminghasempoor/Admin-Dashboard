@@ -31,20 +31,20 @@ export default function RootLayout({children}: Readonly<{ children: React.ReactN
             className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
         >
         <UserProvider>
-            <LoadingProvider>
-                <ToastProvider>
-                    <AppLayout>
-                        <ThemeProvider
-                            attribute="class"
-                            defaultTheme="system"
-                            enableSystem
-                            disableTransitionOnChange
-                        >
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="system"
+                enableSystem
+                disableTransitionOnChange
+            >
+                <LoadingProvider>
+                    <ToastProvider>
+                        <AppLayout>
                             {children}
-                        </ThemeProvider>
-                    </AppLayout>
-                </ToastProvider>
-            </LoadingProvider>
+                        </AppLayout>
+                    </ToastProvider>
+                </LoadingProvider>
+            </ThemeProvider>
         </UserProvider>
         </body>
         </html>

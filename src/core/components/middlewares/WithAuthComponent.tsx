@@ -2,9 +2,10 @@ import FullPageLayout from "@/layouts/FullPageLayout";
 import CenterLayout from "@/layouts/CenterLayout";
 import SvgLoading from "@/core/svgs/SvgLoading";
 import {Button} from "@/components/ui/button";
-import NextLink from "next/link"
 import {Card, CardHeader} from "@/components/ui/card";
 import Image from "next/image";
+import Link from "next/link";
+
 const WithAuthComponent = () => {
     return (
         <>
@@ -26,16 +27,11 @@ const WithAuthComponent = () => {
                                 <h3 className={"text-center text-primary py-3"}>
                                     Your access to this page has expired Please login again
                                 </h3>
-                                <Button className={"w-full"}>
-                                    <NextLink
-                                        href={{
-                                            pathname: "/signup",
-                                            // query : {back_url : encodeURIComponent("/")}
-                                        }}
-                                    >
+                                <Link className={"w-full"} href={"/signin"}>
+                                    <Button className={"w-full"}>
                                         Sign In
-                                    </NextLink>
-                                </Button>
+                                    </Button>
+                                </Link>
                             </CardHeader>
                         </Card>
                     </CenterLayout>

@@ -15,7 +15,7 @@ import {AuthItems} from "@/lib/MenuItems";
 import useUser from "@/lib/app/hooks/useUser";
 
 function NavBarUserAuth() {
-    const {changeAuthState} = useUser()
+    const {changeAuthState, clearToken} = useUser()
     return (
         <>
             <DropdownMenu>
@@ -53,10 +53,12 @@ function NavBarUserAuth() {
                         })}
                     </DropdownMenuGroup>
                     <DropdownMenuSeparator/>
-                    <DropdownMenuLabel className={"flex items-center"}>
-                        {/* <LogoutLink className={"flex items-center"}> */}
-                        <LogOut className="mr-2 h-4 w-4"/> Log Out
-                        {/* </LogoutLink> */}
+                    <DropdownMenuLabel>
+                        <Button onClick={()=>{
+                            clearToken()
+                        }} variant={"ghost"} className={"flex items-center p-0 w-full"}>
+                            <LogOut className="mr-2 h-4 w-4"/> Log Out
+                        </Button>
                     </DropdownMenuLabel>
                 </DropdownMenuContent>
             </DropdownMenu>

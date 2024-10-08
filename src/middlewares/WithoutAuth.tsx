@@ -12,7 +12,7 @@ const WithoutAuthMiddleware = ({children}) => {
         if (!isAuth) return;
         const timer = setTimeout(() => {
             router.replace(`/dashboard/${user.role}`);
-        }, 2000);
+        }, 1000);
 
         return () => {
             clearTimeout(timer);

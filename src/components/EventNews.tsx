@@ -22,7 +22,7 @@ const EventNews = () => {
                         <p className="font-bold">{event.description}</p>
                     </CardContent>
                     <CardFooter>
-                        <span className="text-gray-600 text-xs">{event.time}</span>
+                        <span className="text-primary text-xs">{event.time}</span>
                     </CardFooter>
                 </Card>
             ))}
